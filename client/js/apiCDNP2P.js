@@ -303,8 +303,8 @@ var statP2P = {
    * argument will be falsey.
    * @return {object} the XMLHttpRequest that was initiated.
    */
-   videojs.Hls.xhr = function(url_C, callback) {
-    // return videojs.Hls.xhrCDN(url_C, callback);
+   videojs.hls.xhr = function(url_C, callback) {
+    // return videojs.hls.xhrCDN(url_C, callback);
     // console.log(url_C);
     try {
       var url = url_C;
@@ -318,14 +318,14 @@ var statP2P = {
         if (!myBaseUrl[url]){
           myBaseUrl[url] = {};//responseType:"arraybuffer"
         }
-        return videojs.Hls.xhrCDN(url, callback);
+        return videojs.hls.xhrCDN(url, callback);
       }else {
         if (!myBaseUrl[url]){
           myBaseUrl[url] = {};
         }
         if (Object.keys(myBaseUrl[url]).length > 0){
           // have leacher
-          videojs.Hls.xhrP2P(Object.keys(myBaseUrl[url]), url, callback);
+          videojs.hls.xhrP2P(Object.keys(myBaseUrl[url]), url, callback);
           console.log("I know leechers");
           // update leachers
           videojs.APIP2P.updateLeechers(url, function (leechers){});
@@ -339,14 +339,14 @@ var statP2P = {
       if (typeof callback !== 'function') {
         callback = function() {};
       }
-      // videojs.Hls.xhrCDN(url, callback);
+      // videojs.hls.xhrCDN(url, callback);
 
       console.log("Want leechers");
       videojs.APIP2P.updateLeechers(url, function (leechers){
         if (leechers.length){
-          videojs.Hls.xhrP2P(leechers, url, callback);
+          videojs.hls.xhrP2P(leechers, url, callback);
         }else{
-          videojs.Hls.xhrCDN(url, callback);
+          videojs.hls.xhrCDN(url, callback);
         }
       });
       return {
@@ -364,7 +364,7 @@ var statP2P = {
     };
    };
 
-   videojs.Hls.xhrP2P = function(leechers, url, callback) {
+   videojs.hls.xhrP2P = function(leechers, url, callback) {
       console.log("CALL P2P", url);
       var sender = {
         requestTime: new Date().getTime()
@@ -372,7 +372,7 @@ var statP2P = {
       videojs.APIP2P.xhrP2P(leechers,url,function(obj, error, url_cb){
         if (error){
           // leecher fail
-          return videojs.Hls.xhrCDN(url, callback);
+          return videojs.hls.xhrCDN(url, callback);
         }
         sender.responseTime = new Date().getTime();
         sender =videojs.mergeOptions(sender,{
@@ -391,7 +391,7 @@ var statP2P = {
 
 
 
-  videojs.Hls.xhrCDN = function(url, callback) {
+  videojs.hls.xhrCDN = function(url, callback) {
     console.log("CALL CDN", url);
     var
       options = {
@@ -472,9 +472,9 @@ var statP2P = {
 
 window.apiCDNP2P = function(options){
   // Videojs hls wrapper
-  if (window.videojs && window.videojs.Hls){
+  if (videojs && videojs.hls){
     var baseopt = {host:"127.0.0.1",port:"9000",key: 'peerjs',debug:3};
     baseopt = videojs.mergeOptions(baseopt, options);
-    window.videojs.APIP2P.startConnect(baseopt);
+    videojs.APIP2P.startConnect(baseopt);
   }
 };
