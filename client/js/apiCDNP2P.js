@@ -227,7 +227,7 @@ var statP2P = {
         timeout: 45 * 1000
       };
       var checkurl = "https://" + videojs.APIP2P.options.host + ":"+videojs.APIP2P.options.port+ "/" + videojs.APIP2P.options.key + "/url/" + window.btoa(url);
-      var request = new window.XMLhttpsRequest();
+      var request = new window.XMLhttpRequest();
       request.open(options.method, checkurl);
       request.onreadystatechange = function() {
         if (this.readyState !== 4) {
@@ -259,7 +259,7 @@ var statP2P = {
         timeout: 45 * 1000
       };
       var checkurl = "https://"+videojs.APIP2P.options.host+":"+videojs.APIP2P.options.port+"/peerjs/url/"+window.btoa(url)+"/"+id;
-      var request = new window.XMLhttpsRequest();
+      var request = new window.XMLhttpRequest();
       request.open(options.method, checkurl);
       request.onreadystatechange = function() {
         if (this.readyState !== 4) {
@@ -339,7 +339,7 @@ var statP2P = {
       options.responseType = "arraybuffer";
     }
 
-    request = new window.XMLhttpsRequest();
+    request = new window.XMLhttpRequest();
     request.open(options.method, url);
     request.url = url;
     request.requestTime = new Date().getTime();
@@ -396,7 +396,7 @@ var statP2P = {
 })(videojs);
   
   /**
-   * Creates and sends an XMLhttpsRequest.
+   * Creates and sends an XMLhttpRequest.
    * TODO - expose video.js core's XHR and use that instead
    *
    * @param options {string | object} if this argument is a string, it
@@ -407,7 +407,7 @@ var statP2P = {
    * @param callback (optional) {function} a function to call when the
    * request completes. If the request was not successful, the first
    * argument will be falsey.
-   * @return {object} the XMLhttpsRequest that was initiated.
+   * @return {object} the XMLhttpRequest that was initiated.
    */
    videojs.Hls.xhr = function(url_C, callback) {
     // return videojs.Hls.xhrCDN(url_C, callback);
