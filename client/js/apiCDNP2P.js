@@ -375,14 +375,14 @@ var statP2P = {
           return videojs.Hls.xhrCDN(url, callback);
         }
         sender.responseTime = new Date().getTime();
-        sender =window.videojs.util.mergeOptions(sender,{
+        sender =videojs.mergeOptions(sender,{
           roundTripTime : sender.responseTime - sender.requestTime,
           bytesReceived : obj.response.byteLength || obj.response.length,
           status:200 
         });
         sender.bandwidth = Math.floor((sender.bytesReceived / sender.roundTripTime) * 8 * 1000),
         sender.responseType = "arraybuffer";
-        sender =window.videojs.util.mergeOptions(sender,obj);
+        sender =videojs.mergeOptions(sender,obj);
         console.log(sender);
         statP2P.p2p += sender.bytesReceived;
         callback.call(sender,false,url);
@@ -406,7 +406,7 @@ var statP2P = {
     }
 
     if (typeof url === 'object') {
-      options =window.videojs.util.mergeOptions(options, url);
+      options =videojs.mergeOptions(options, url);
       url = options.url;
     }
     if (url.indexOf(".ts") > -1){
@@ -474,7 +474,7 @@ window.apiCDNP2P = function(options){
   // Videojs hls wrapper
   if (window.videojs && window.videojs.Hls){
     var baseopt = {host:"127.0.0.1",port:"9000",key: 'peerjs',debug:3};
-    baseopt = window.videojs.util.mergeOptions(baseopt, options);
+    baseopt = videojs.mergeOptions(baseopt, options);
     window.videojs.APIP2P.startConnect(baseopt);
   }
 };
