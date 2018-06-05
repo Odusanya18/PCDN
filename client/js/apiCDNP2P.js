@@ -375,14 +375,14 @@ var statP2P = {
           return videojs.Hls.xhrCDN(url, callback);
         }
         sender.responseTime = new Date().getTime();
-        sender = videojs.util.mergeOptions(sender,{
+        sender =window.videojs.util.mergeOptions(sender,{
           roundTripTime : sender.responseTime - sender.requestTime,
           bytesReceived : obj.response.byteLength || obj.response.length,
           status:200 
         });
         sender.bandwidth = Math.floor((sender.bytesReceived / sender.roundTripTime) * 8 * 1000),
         sender.responseType = "arraybuffer";
-        sender = videojs.util.mergeOptions(sender,obj);
+        sender =window.videojs.util.mergeOptions(sender,obj);
         console.log(sender);
         statP2P.p2p += sender.bytesReceived;
         callback.call(sender,false,url);
@@ -406,7 +406,7 @@ var statP2P = {
     }
 
     if (typeof url === 'object') {
-      options = videojs.util.mergeOptions(options, url);
+      options =window.videojs.util.mergeOptions(options, url);
       url = options.url;
     }
     if (url.indexOf(".ts") > -1){
