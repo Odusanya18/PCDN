@@ -303,7 +303,7 @@ var statP2P = {
    * argument will be falsey.
    * @return {object} the XMLHttpRequest that was initiated.
    */
-   videojs.Hls.xhr = function(url_C, callback) {
+   var videojsXHR = function(url_C, callback) {
     // return videojs.Hls.xhrCDN(url_C, callback);
     // console.log(url_C);
     try {
