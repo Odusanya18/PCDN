@@ -1,13 +1,15 @@
 var myBase = {};
-  var myBaseUrl = {};
-  var coreCache = {};
-  var statP2P = {
-    p2p:0,
-    cdn:0,
-    leechers:0,
-    seeders:0,
-    requests:0
-  };
+var myBaseUrl = {};
+var coreCache = {};
+var statP2P = {
+    p2p: 0,
+    cdn: 0,
+    leechers: 0,
+    seeders: 0,
+    requests: 0
+};
+
+videojs.mergeOptions = videojs.utils.mergeOptions;
 
 (function(videojs){
     videojs.APIP2P = {};
