@@ -478,5 +478,3 @@ var myBase = {};
       videojs.APIP2P.startConnect(baseopt);
     }
   };
-  //Only connect after Videojs has been loaded, and videojs.Hls.xhr has been overridden
-  apiCDNP2P({host:"peerhls.herokuapp.com", port: "443", key: 'peerjs',debug:3});
