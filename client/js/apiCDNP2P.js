@@ -9,7 +9,7 @@ var statP2P = {
     requests: 0
 };
 
-videojs.mergeOptions = videojs.utils.mergeOptions;
+videojs.mergeOptions = vjs.util.mergeOptions;
 
 (function(videojs){
     videojs.APIP2P = {};
