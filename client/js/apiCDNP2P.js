@@ -1,5 +1,4 @@
-player.ready(function(){
-  var myBase = {};
+var myBase = {};
   var myBaseUrl = {};
   var coreCache = {};
   var statP2P = {
@@ -10,6 +9,7 @@ player.ready(function(){
     requests:0
   };
 
+player.ready(function(){
   (function(videojs){
     videojs.APIP2P = {};
     videojs.APIP2P.startConnect = function (options) {
