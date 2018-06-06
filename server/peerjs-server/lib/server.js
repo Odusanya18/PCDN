@@ -11,44 +11,6 @@ var mymap = {};
 app._initializeWSS = function(server) {
   var self = this;
 
-  this.get('/:key/url/:url', function (req, res){
-    var url = req.params.url;
-    if(mymap[url])
-      return res.send(mymap[url]);
-    res.send([]);
-  });
-
-  this.get('/:key/url/:url/:leacher', function (req, res){
-    var url = req.params.url;
-    var leacher = req.params.leacher;
-    if (leacher == "null")
-      return res.sendStatus(200);
-    if(!mymap[url])
-      mymap[url] = [];
-    var found = false;
-    for (var i = 0; i < mymap[url].length; i++) {
-      if (mymap[url][i] == leacher){
-        found = true;
-        break;
-      }
-    }
-    if (!found)
-      mymap[url].push(leacher);
-    res.sendStatus(200);
-  });
-
-  this.get('/:key/urldel/:url/:leacher', function (req, res){
-    var url = req.params.url;
-    var leacher = req.params.leacher;
-    if(!mymap[url])
-      mymap[url] = [];
-    for (var i = 0; i < mymap[url].length; i++) {
-      if(mymap[url][i] == leacher)
-        mymap[url].splice( i, 1 );
-    };
-    res.sendStatus(200);
-  });
-
   if (this.mountpath instanceof Array) {
     throw new Error("This app can only be mounted on a single path");
   }
@@ -194,6 +156,44 @@ app._initializeHTTP = function() {
   this.get('/:key/id', function(req, res, next) {
     res.contentType = 'text/html';
     res.send(self._generateClientId(req.params.key));
+  });
+  
+  this.get('/:key/url/:url', function (req, res){
+    var url = req.params.url;
+    if(mymap[url])
+      return res.send(mymap[url]);
+    res.send([]);
+  });
+
+  this.get('/:key/url/:url/:leacher', function (req, res){
+    var url = req.params.url;
+    var leacher = req.params.leacher;
+    if (leacher == "null")
+      return res.sendStatus(200);
+    if(!mymap[url])
+      mymap[url] = [];
+    var found = false;
+    for (var i = 0; i < mymap[url].length; i++) {
+      if (mymap[url][i] == leacher){
+        found = true;
+        break;
+      }
+    }
+    if (!found)
+      mymap[url].push(leacher);
+    res.sendStatus(200);
+  });
+
+  this.get('/:key/urldel/:url/:leacher', function (req, res){
+    var url = req.params.url;
+    var leacher = req.params.leacher;
+    if(!mymap[url])
+      mymap[url] = [];
+    for (var i = 0; i < mymap[url].length; i++) {
+      if(mymap[url][i] == leacher)
+        mymap[url].splice( i, 1 );
+    };
+    res.sendStatus(200);
   });
 
   // Server sets up HTTP streaming when you get post an ID.
