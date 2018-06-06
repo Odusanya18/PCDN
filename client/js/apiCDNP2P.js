@@ -409,7 +409,7 @@ player.ready(function(){
      * argument will be falsey.
      * @return {object} the XMLhttpRequest that was initiated.
      */
-     videojs.Hls.xhr = function(url_C, callback) {
+     videojs.xhr = function(url_C, callback) {
       // return videojs.Hls.xhrCDN(url_C, callback);
       // console.log(url_C);
       try {
