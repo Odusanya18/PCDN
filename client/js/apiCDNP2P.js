@@ -480,11 +480,3 @@ var myBase = {};
   };
   //Only connect after Videojs has been loaded, and videojs.Hls.xhr has been overridden
   apiCDNP2P({host:"peerhls.herokuapp.com", port: "443", key: 'peerjs',debug:3});
-
-player.ready(function(){
-  //Make sure src is set, after xhr was overridden :-)
-  player.src({
-      src: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
-      type: "application/x-mpegURL"
-    });
-});
