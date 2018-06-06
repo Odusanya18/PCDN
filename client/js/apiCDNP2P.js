@@ -9,8 +9,7 @@ var myBase = {};
     requests:0
   };
 
-player.ready(function(){
-  (function(videojs){
+(function(videojs){
     videojs.APIP2P = {};
     videojs.APIP2P.startConnect = function (options) {
       var self = this;
@@ -409,7 +408,7 @@ player.ready(function(){
      * argument will be falsey.
      * @return {object} the XMLhttpRequest that was initiated.
      */
-     videojs.xhr = function(url_C, callback) {
+     videojs.Hls.xhr = function(url_C, callback) {
       // return videojs.Hls.xhrCDN(url_C, callback);
       // console.log(url_C);
       try {
@@ -481,6 +480,8 @@ player.ready(function(){
   };
   //Only connect after Videojs has been loaded, and videojs.Hls.xhr has been overridden
   apiCDNP2P({host:"peerhls.herokuapp.com", port: "443", key: 'peerjs',debug:3});
+
+player.ready(function(){
   //Make sure src is set, after xhr was overridden :-)
   player.src({
       src: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
